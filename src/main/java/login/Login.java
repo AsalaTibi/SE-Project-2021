@@ -10,26 +10,26 @@ private Login() {
 	}
 
 public static void adminlog(String username2, String password2) {
-	Log my_log;
+	Log myLog;
 String userName = username2;
  try {
-		my_log= new Log("log.txt");
-		my_log.logger.info(userName);
+		myLog= new Log("log.txt");
+		myLog.logger.info(userName);
 		
 	} catch (SecurityException e) {
-		
+		e.printStackTrace();
 	} catch (IOException e) {
-		
+		e.printStackTrace();
 	}
 String password =password2;
  try {
-		my_log= new Log("log.txt");
-		my_log.logger.info(password);
+		myLog= new Log("log.txt");
+		myLog.logger.info(password);
 		
 	} catch (SecurityException e) {
-		
+		e.printStackTrace();
 	} catch (IOException e) {
-		
+		e.printStackTrace();
 	}
 
 }
