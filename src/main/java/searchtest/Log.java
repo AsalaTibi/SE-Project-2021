@@ -17,13 +17,15 @@ public class Log {
 	FileHandler fh;
 	public Log(String fileName) throws SecurityException ,IOException{
 		File f= new File(fileName);
+		boolean b =false;
 		if(!f.exists()) {
-		f.createNewFile();
+		b=f.createNewFile();
 		}
+		if(b) {
 		fh= new FileHandler(fileName, true);
 		logger=Logger.getLogger("test");
 		logger.addHandler(fh);
 		SimpleFormatter formatter=new SimpleFormatter();
-		fh.setFormatter(formatter);
+		fh.setFormatter(formatter);}
 	}
 }
