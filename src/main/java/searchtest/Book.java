@@ -12,7 +12,7 @@ public class Book {
 	private String signature ;
 	private String cons = "log.txt";
 	int flage=1;
-
+	Log myLog;
 	ArrayList<Book> items = new ArrayList<Book>();
  public Book() {
 		
@@ -23,8 +23,6 @@ public class Book {
 	}
 
 	public String searchName(String s) {
-		Log myLog;
-
 		Book b = new Book(); 
 		items.add(b);
 	
@@ -35,7 +33,7 @@ public class Book {
 			 back=items.get(i).title;
 			 try {
 				myLog= new Log(cons);
-				 myLog.logger.info(getInfo(i));
+				 myLog.getLogger().info(getInfo(i));
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -51,7 +49,6 @@ public class Book {
 
 
 	public String searchByAuthor(String s) {
-		Log myLog;
 		Book b = new Book(); 
 		items.add(b);
 	
@@ -62,8 +59,8 @@ public class Book {
 			 back=items.get(i).author;
 			 try {
 			 myLog= new Log(cons);
-			 myLog.logger.info(back);
-		     myLog.logger.info(getInfo(i));
+			 myLog.getLogger().info(back);
+		     myLog.getLogger().info(getInfo(i));
 				} catch (SecurityException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -82,7 +79,6 @@ public class Book {
 	public String searchByIsbn(String s) {
 		Book b = new Book(); 
 		items.add(b);
-	Log myLog;
 		String theName = s;
 		String back="";
 		for (int i = 0; i < items.size(); i++) {
@@ -90,8 +86,8 @@ public class Book {
 			 back=items.get(i).isbn;
 			 try {
 				myLog= new Log(cons);
-				myLog.logger.info(back);
-				myLog.logger.info(getInfo(i));
+				myLog.getLogger().info(back);
+				myLog.getLogger().info(getInfo(i));
 				} catch (SecurityException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -110,7 +106,6 @@ public class Book {
 
 
 	public String searchBySig(String s) {
-		Log myLog;
 		Book b = new Book(); 
 		items.add(b);
 		
@@ -121,8 +116,8 @@ public class Book {
 			 back=items.get(i).signature;
 			 try {
 					myLog= new Log(cons);
-					myLog.logger.info(back);
-					 myLog.logger.info(getInfo(i));
+					myLog.getLogger().info(back);
+					 myLog.getLogger().info(getInfo(i));
 				} catch (SecurityException e) {
 					e.printStackTrace();}
 			 catch (IOException e) {
@@ -138,7 +133,6 @@ public class Book {
 
 	public int searchCountSig(String sigb) {
 		Book b = new Book(); 
-		Log myLog;
 		items.add(b);
 		int count=0;
 		String theName = sigb;
@@ -149,7 +143,7 @@ public class Book {
 			 back=items.get(i).signature;
 			 try {
 					myLog= new Log(cons);
-					myLog.logger.info(back);
+					myLog.getLogger().info(back);
 				
 				} catch (SecurityException e) {
 					e.printStackTrace();
@@ -166,7 +160,6 @@ public class Book {
 
 	public int searchCountAuthor(String authorb) {
 		Book b = new Book(); 
-		Log myLog;
 		items.add(b);
 		int count=0;
 		String theName = authorb;
@@ -176,7 +169,7 @@ public class Book {
 			 back=items.get(i).author;
 			 try {
 					myLog= new Log(cons);
-					myLog.logger.info(back);
+					myLog.getLogger().info(back);
 					
 				} catch (SecurityException e) {
 					e.printStackTrace();
@@ -195,7 +188,6 @@ public class Book {
 	public int searchCountTitle(String titleb) {
 		Book b = new Book(); 
 		items.add(b);
-		Log myLog;
 		int count=0;
 		String theName = titleb;
 		String back="";
@@ -204,7 +196,7 @@ public class Book {
 			 back=items.get(i).title;
 			 try {
 					myLog= new Log(cons);
-					myLog.logger.info(back);
+					myLog.getLogger().info(back);
 					
 				} catch (SecurityException e) {
 					e.printStackTrace();
@@ -220,55 +212,56 @@ public class Book {
 
 
 	public void addBook(String isbn2, String title2, String author2, String sig2) {
-	Log myLog;
-	
 		if(validIsbn(isbn2)) {
 		 try {
 				myLog= new Log(cons);
-				myLog.logger.info("Valid ISBN");
+				myLog.getLogger().info("Valid ISBN");
 				
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		  checkMyisbn();
+
+		  addIt(sig2);
+		}	
+	}
+
+
+	private void addIt(String sig2) {
+		if(flage == 1) {
+			Book b1=new Book();
+			b1.isbn=isbn;
+			b1.author=author;
+			b1.signature=sig2;
+			b1.title=title;
+
 		
+		    items.add(b1);
+			}
+		
+	}
+
+	private void checkMyisbn() {
 		for(int j=0;j<items.size();j++)
 		{
 			if(isbn.equals(items.get(j).isbn)) {
+		
 			 try {
 					myLog= new Log(cons);
-					myLog.logger.info("The book is exist you can not adde it");
+					myLog.getLogger().info("The book is exist you can not adde it");
 					
 				} catch (SecurityException e) {
-					e.printStackTrace();
+					
 				} catch (IOException e) {
-					e.printStackTrace();
+					
 				}
-		flage = 0;
+		            flage = 0;
 		}
 		}
-
-		if(flage == 1) {
-		Book b1=new Book();
-		b1.isbn=isbn2;
-		b1.author=author2;
-		b1.signature=sig2;
-		b1.title=title2;
-	    items.add(b1);
-		}}
-		else
-			 try {
-					myLog= new Log(cons);
-					myLog.logger.info("InValid ISBN");
-					
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}	
+		
 	}
-
 
 	private boolean validIsbn(String isbn2) {
 		int sum =0;
@@ -277,9 +270,7 @@ public class Book {
 		for (int i=0;i<isbn2.length();i++) {
 			sum +=(charArray[i]*(10-i));
 			}
-			if(sum % 11 == 0)
-			return true;
-			else 
-			return false;
+		  boolean exp=(sum % 11 == 0);
+		  return exp;
 	}
 }

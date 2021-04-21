@@ -1,10 +1,8 @@
 package testpackage;
-import searchtest.Log;
 
 public class LogoutClass {
 
 public int goout(int in) {
-	Log my_log;
 	int out;
 	
    if (in==1) {

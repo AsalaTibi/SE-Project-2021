@@ -14,7 +14,7 @@ public static void adminlog(String username2, String password2) {
 String userName = username2;
  try {
 		myLog= new Log("log.txt");
-		myLog.logger.info(userName);
+		myLog.getLogger().info(userName);
 		
 	} catch (SecurityException e) {
 		e.printStackTrace();
@@ -24,7 +24,7 @@ String userName = username2;
 String password =password2;
  try {
 		myLog= new Log("log.txt");
-		myLog.logger.info(password);
+		myLog.getLogger().info(password);
 		
 	} catch (SecurityException e) {
 		e.printStackTrace();
