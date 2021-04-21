@@ -31,15 +31,8 @@ public class Book {
 		for (int i = 0; i < items.size(); i++) {
 		 if(items.get(i).title.contains(theName)) {
 			 back=items.get(i).title;
-			 try {
-			myLog= new Log(cons);
-			myLog.getLogger().info(getInfo(i));
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+			 String str =getInfo(i);
+			 printLogger(str);
 			break;
 		 }
 		
@@ -57,16 +50,8 @@ public class Book {
 		for (int i = 0; i < items.size(); i++) {
 		 if(items.get(i).author.contains(theName)) {
 			 back=items.get(i).author;
-			 try {
-			 myLog= new Log(cons);
-			 myLog.getLogger().info(back);
-		     myLog.getLogger().info(getInfo(i));
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			 
+			 String str=getInfo(i);
+			 printLogger(str);
 			break;
 		 }
 		
@@ -84,20 +69,26 @@ public class Book {
 		for (int i = 0; i < items.size(); i++) {
 		 if(items.get(i).isbn.contains(theName)) {
 			 back=items.get(i).isbn;
-			 try {
-				myLog= new Log(cons);
-				myLog.getLogger().info(back);
-				myLog.getLogger().info(getInfo(i));
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			 String str=getInfo(i);
+			 printLogger(back);
+			 printLogger(str);
 			break;
 		 }
 		
 	}
 	return back;
+	}
+
+	private void printLogger(String str) {
+		 try {
+				myLog= new Log(cons);
+				myLog.getLogger().info(str);
+				} catch (SecurityException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		
 	}
 
 	private String getInfo(int i) {
@@ -114,15 +105,9 @@ public class Book {
 		for (int i = 0; i < items.size(); i++) {
 		 if(items.get(i).signature.contains(theName)) {
 			 back=items.get(i).signature;
-			 try {
-					myLog= new Log(cons);
-					myLog.getLogger().info(back);
-					 myLog.getLogger().info(getInfo(i));
-				} catch (SecurityException e) {
-					e.printStackTrace();}
-			 catch (IOException e) {
-					e.printStackTrace();
-				}
+			 String str=getInfo(i);
+			 printLogger(back);
+			 printLogger(str);
 			break;
 		 }
 		
@@ -141,15 +126,7 @@ public class Book {
 		 if(items.get(i).signature.contains(theName)) {
 			 
 			 back=items.get(i).signature;
-			 try {
-					myLog= new Log(cons);
-					myLog.getLogger().info(back);
-				
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			 printLogger(back);
 			count++;
 		 }
 		
@@ -167,16 +144,7 @@ public class Book {
 		for (int i = 0; i < items.size(); i++) {
 		 if(items.get(i).author.contains(theName)) {
 			 back=items.get(i).author;
-			 try {
-					myLog= new Log(cons);
-					myLog.getLogger().info(back);
-					
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			
+			 printLogger(back);
 			count++;
 		 }
 		
@@ -194,15 +162,7 @@ public class Book {
 		for (int i = 0; i < items.size(); i++) {
 		 if(items.get(i).title.contains(theName)) {
 			 back=items.get(i).title;
-			 try {
-					myLog= new Log(cons);
-					myLog.getLogger().info(back);
-					
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			printLogger(back);
 			count++;
 		 }
 	}
@@ -213,17 +173,9 @@ public class Book {
 
 	public void addBook(String isbn2, String title2, String author2, String sig2) {
 		if(validIsbn(isbn2)) {
-		 try {
-				myLog= new Log(cons);
-				myLog.getLogger().info("Valid ISBN");
-				
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			String str ="Valid ISBN";
+		   printLogger(str);
 		  checkMyisbn();
-
 		  addIt(isbn2,title2,author2,sig2);
 		}	
 	   }
@@ -247,16 +199,8 @@ public class Book {
 		for(int j=0;j<items.size();j++)
 		{
 			if(isbn.equals(items.get(j).isbn)) {
-		
-			 try {
-					myLog= new Log(cons);
-					myLog.getLogger().info("The book is exist you can not adde it");
-					
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				String str="The book is exist you can not adde it";
+		       printLogger(str);
 		            flage = 0;
 		}
 		}
