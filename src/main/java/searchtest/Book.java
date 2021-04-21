@@ -32,8 +32,8 @@ public class Book {
 		 if(items.get(i).title.contains(theName)) {
 			 back=items.get(i).title;
 			 try {
-				myLog= new Log(cons);
-				 myLog.getLogger().info(getInfo(i));
+			myLog= new Log(cons);
+			myLog.getLogger().info(getInfo(i));
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -224,17 +224,17 @@ public class Book {
 			}
 		  checkMyisbn();
 
-		  addIt(sig2);
+		  addIt(isbn2,title2,author2,sig2);
 		}	
-	}
+	   }
 
 
-	private void addIt(String sig2) {
+	private void addIt(String isbn,String title,String author,String sig) {
 		if(flage == 1) {
 			Book b1=new Book();
 			b1.isbn=isbn;
 			b1.author=author;
-			b1.signature=sig2;
+			b1.signature=sig;
 			b1.title=title;
 
 		
@@ -253,9 +253,9 @@ public class Book {
 					myLog.getLogger().info("The book is exist you can not adde it");
 					
 				} catch (SecurityException e) {
-					
+					e.printStackTrace();
 				} catch (IOException e) {
-					
+					e.printStackTrace();
 				}
 		            flage = 0;
 		}
@@ -270,7 +270,7 @@ public class Book {
 		for (int i=0;i<isbn2.length();i++) {
 			sum +=(charArray[i]*(10-i));
 			}
-		  boolean exp=(sum % 11 == 0);
-		  return exp;
+		  return(sum % 11 == 0);
+		  
 	}
 }
